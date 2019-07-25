@@ -74,6 +74,14 @@ TEMPLATES = [
 
 # Routing for channels.
 ASGI_APPLICATION = 'gmhelper.routing.application'
+CHANNEL_LAYERS = {
+  'default': {
+    'BACKEND': 'channels_redis.core.RedisChannelLayer',
+    'CONFIG': {
+      'hosts': [('127.0.0.1', 6379)],
+    },
+  },
+}
 
 WSGI_APPLICATION = 'gmhelper.wsgi.application'
 

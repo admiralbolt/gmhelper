@@ -1,4 +1,20 @@
 {% load static %}
 <script src="{% static "js/socket_helper.js" %}?version={{no_cache}}"></script>
 
-<button onclick="send_message('asdf')">Send Message To Socket</button>
+{% for letter in letters %}
+  <h3>{{letter.name}}</h3>
+  <button onclick="send_message({type: 'letter', text: '{{letter.text | escapejs}}'})">Send to Client</button>
+{% endfor %}
+
+{% for song in songs %}
+  <h3>{{song.name}}</h3>
+  <ul>
+    {% for tag in song.tags.all %}
+      <li>{{tag.name}}</li>
+    {% endfor %}
+  </ul>
+  <p>{{song.flavor}}</p>
+  <audio controls {% if song.loop %} loop {% endif %}>
+    <source src="{{song.sound_file.url}}" />
+  </audio>
+{% endfor %}
