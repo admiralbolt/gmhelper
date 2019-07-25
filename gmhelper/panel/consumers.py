@@ -17,7 +17,7 @@ class ControlConsumer(WebsocketConsumer):
     self.accept()
 
   def disconnect(self, close_code):
-    async_to_sync(self.channel_layer.group_discard)(GROUP)
+    async_to_sync(self.channel_layer.group_discard)(GROUP, self.channel_name)
 
   def receive(self, text_data):
     # Receieve gets called when a message is sent to the socket. We can choose
