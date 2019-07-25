@@ -17,3 +17,20 @@ class Song(models.Model):
 
   def __str__(self):
     return self.name
+
+class Letter(models.Model):
+  name = models.CharField(max_length=255)
+  flavor = models.TextField(default=None, blank=True)
+  author = models.CharField(max_length=255)
+  text = models.TextField()
+
+  def __str__(self):
+    return self.name
+
+class Lore(models.Model):
+  name = models.CharField(max_length=255)
+  flavor = models.TextField(default=None, blank=True)
+  text = models.TextField()
+
+  def __str__(self):
+    return self.name

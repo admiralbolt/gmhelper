@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'channels',
 ]
 
 MIDDLEWARE = [
@@ -70,6 +71,9 @@ TEMPLATES = [
         },
     },
 ]
+
+# Routing for channels.
+ASGI_APPLICATION = 'gmhelper.routing.application'
 
 WSGI_APPLICATION = 'gmhelper.wsgi.application'
 
