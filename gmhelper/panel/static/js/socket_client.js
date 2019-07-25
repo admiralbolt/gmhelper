@@ -10,6 +10,10 @@ socket.onmessage = function(event) {
   }
 }
 
+function convert_newlines(text) {
+  return text.replace(/\r\n/g, "<br />");
+}
+
 function display_letter(text) {
-  $("#content").html(text);
+  $("#content").html(convert_newlines(text));
 }
