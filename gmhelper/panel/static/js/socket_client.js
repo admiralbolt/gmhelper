@@ -5,6 +5,9 @@ socket.onmessage = function(event) {
     case "letter":
       display_letter(data.text);
       break;
+    case "image":
+      display_image(data.path);
+      break;
     default:
       console.log("UNKNOWN MESSAGE TYPE");
   }
@@ -16,4 +19,8 @@ function convert_newlines(text) {
 
 function display_letter(text) {
   $("#content").html(convert_newlines(text));
+}
+
+function display_image(path) {
+  $("#content").html("<img src='" + path + "' />");
 }

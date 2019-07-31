@@ -18,6 +18,7 @@ class Song(models.Model):
   def __str__(self):
     return self.name
 
+
 class Letter(models.Model):
   name = models.CharField(max_length=255)
   flavor = models.TextField(default=None, blank=True)
@@ -27,10 +28,19 @@ class Letter(models.Model):
   def __str__(self):
     return self.name
 
+
 class Lore(models.Model):
   name = models.CharField(max_length=255)
   flavor = models.TextField(default=None, blank=True)
   text = models.TextField()
+
+  def __str__(self):
+    return self.name
+
+class Image(models.Model):
+  name = models.CharField(max_length=255)
+  flavor = models.TextField(default=None, blank=True)
+  image_file = models.FileField(upload_to="images/")
 
   def __str__(self):
     return self.name

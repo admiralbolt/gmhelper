@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.template import loader
 
-from panel.models import Letter, Lore, Song
+from panel.models import Image, Letter, Lore, Song
 import random
 
 
@@ -10,11 +10,13 @@ def songs(request):
   return render(request, "songs.html", {"songs": songs})
 
 def controls(request):
+  images = Image.objects.order_by("name")
   letters = Letter.objects.order_by("name")
   lores = Lore.objects.order_by("name")
   songs = Song.objects.order_by("name")
   no_cache = random.randint(1, 10000000000)
   return render(request, "controls.html", {
+    "images": images,
     "letters": letters,
     "lores": lores,
     "songs": songs,
