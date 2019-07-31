@@ -22,5 +22,5 @@ function display_letter(text) {
 }
 
 function display_image(path) {
-  $("#content").html("<img src='" + path + "' />");
+  $("#content").html("<img height='100%' width='100%' src='" + path + "' />");
 }
