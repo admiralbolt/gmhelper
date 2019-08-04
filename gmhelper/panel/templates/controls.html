@@ -1,5 +1,4 @@
 {% load static %}
-<script src="{% static "js/socket_helper.js" %}?version={{no_cache}}"></script>
 
 {% for image in images %}
   <h3>{{image.name}}</h3>
@@ -24,3 +23,6 @@
     <source src="{{song.sound_file.url}}" />
   </audio>
 {% endfor %}
+
+<script src="{% static "js/jquery-3.4.1.js" %}"></script>
+<script src="{% static "js/socket_controls.js" %}?version={{no_cache}}"></script>
