@@ -18,7 +18,6 @@ class Song(models.Model):
   def __str__(self):
     return self.name
 
-
 class Letter(models.Model):
   name = models.CharField(max_length=255)
   flavor = models.TextField(default=None, blank=True)
@@ -27,7 +26,6 @@ class Letter(models.Model):
 
   def __str__(self):
     return self.name
-
 
 class Lore(models.Model):
   name = models.CharField(max_length=255)

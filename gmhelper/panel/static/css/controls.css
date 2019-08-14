@@ -1,0 +1,58 @@
+body {
+  background-color: rgb(37, 40, 48);
+}
+
+.main-header {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0 3px;
+  padding: 10px;
+}
+
+.main-header h1 {
+  color: white;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.auto-complete .entry {
+  color: rgb(217, 217, 217);
+  text-align: left;
+  padding-left: 28px;
+  background-color: white;
+}
+
+.auto-complete ul {
+  width: 100%;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-radius: 0 5px;
+  display: none;
+  position: absolute;
+  z-index: 10;
+}
+
+.auto-complete ul li.entry {
+  color: rgb(188, 188, 188);
+  text-align: left;
+  padding-left: 28px;
+  background-color: white;
+  padding-left: 15px;
+  height: 30px;
+}
+
+.auto-complete ul li.entry:hover {
+  cursor: pointer;
+  background-color: rgb(255, 255, 225);
+}
+
+.item-type {
+  float: right
+}
