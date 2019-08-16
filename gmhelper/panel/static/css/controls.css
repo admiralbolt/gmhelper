@@ -50,6 +50,9 @@ body {
 
 .auto-complete ul li.entry:hover {
   cursor: pointer;
+}
+
+.auto-complete ul li.entry.selected {
   background-color: rgb(255, 255, 225);
 }
 
