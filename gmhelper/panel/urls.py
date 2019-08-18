@@ -3,8 +3,9 @@ from django.urls import path
 from panel import views
 
 urlpatterns = [
-    path("songs", views.songs),
-    path("controls", views.controls),
-    path("client", views.client),
     path("auto_complete", views.auto_complete),
+    path("client", views.client),
+    path("controls", views.controls),
+    path("info_card", views.info_card),
+    path("songs", views.songs),
 ]

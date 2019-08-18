@@ -1,0 +1,9 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static "css/cards.css" %}?version={{no_cache}}" />
+
+<div class="card">
+  <p class="card-title">{{image.name}}</p>
+  <img class="card-icon" src="{{image.image_file.url}}" />
+  <p class="card-flavor">{{image.flavor}}</p>
+</div>

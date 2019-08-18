@@ -1,18 +1,9 @@
 body {
-  background-color: rgb(37, 40, 48);
+  background-color: #add8e6;
 }
 
-.main-header {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 0 3px;
-  padding: 10px;
-}
-
-.main-header h1 {
-  color: white;
+.auto-complete-input {
+  margin-top: 10px;
 }
 
 .flex-center {

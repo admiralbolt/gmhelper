@@ -8,6 +8,12 @@ from fuzzywuzzy import fuzz
 from panel.models import Image, Letter, Lore, Song
 
 all_searchable_objects = [Image, Letter, Lore, Song]
+model_map = {
+  "panel.image": Image,
+  "panel.letter": Letter,
+  "panel.lore": Lore,
+  "panel.song": Song
+}
 
 def jaccard(a, b):
   return float(len(a.intersection(b))) / len(a.union(b))
@@ -38,6 +44,21 @@ def auto_complete(request):
     print(data)
   return JsonResponse(serializers.serialize("json", data[:5]), safe=False)
 
+def info_card(request):
+  """Render an info card for a given data item.
+
+  This will render one of the card templates with the given item.
+  """
+  model = request.GET["model"]
+  item_name = model.split(".")[1]
+  key = request.GET["key"]
+  item = model_map[model].objects.get(pk=key)
+  return render(request, f"cards/{item_name}.html", {
+    item_name: item,
+    "no_cache": random.randint(1, 100000000)
+  })
+
+
 def songs(request):
   songs = Song.objects.order_by("name")
   return render(request, "songs.html", {"songs": songs})
@@ -47,7 +68,6 @@ def controls(request):
   letters = Letter.objects.order_by("name")
   lores = Lore.objects.order_by("name")
   songs = Song.objects.order_by("name")
-  no_cache = random.randint(1, 10000000000)
   return render(request, "controls.html", {
     "images": images,
     "letters": letters,

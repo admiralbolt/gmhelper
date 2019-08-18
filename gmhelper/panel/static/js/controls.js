@@ -44,6 +44,13 @@ $(function() {
     var index = $(this).attr("data-index");
     var data = auto_complete_items[index];
     console.log(data);
+    $.ajax({
+      method: "GET",
+      url: "/panel/info_card?model=" + data.model + "&key=" + data.pk,
+      dataType: "html"
+    }).done(function(result) {
+      $("#info-cards").append(result);
+    });
     $("#auto-complete-results").hide();
   });
 
