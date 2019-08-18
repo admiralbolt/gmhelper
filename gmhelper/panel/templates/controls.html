@@ -10,19 +10,23 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   </head>
   <body>
-    <div class="auto-complete-input row flex-center">
-      <div class="col-lg-6">
-        <input type="text" id="input-keyword" class="form-control" placeholder="Search for stuff..." aria-label="Search for stuff...">
-      </div>
-    </div>
-    <div class="auto-complete row flex-center">
-      <div class="col-lg-6">
-        <ul id="auto-complete-results" class="auto-complete-ul">
-        </ul>
-      </div>
-    </div>
-    <div id="info-cards" class="row flex-center">
+    <div class="row main-content">
+      <div class="session-panel col-lg-2">
 
+      </div>
+      <div class="session-content col-lg-6">
+
+      </div>
+      <div class="search-panel col-lg-4">
+        <div class="auto-complete-input flex-center">
+          <input type="text" id="input-keyword" class="form-control" placeholder="Search for stuff..." aria-label="Search for stuff...">
+        </div>
+        <div class="auto-complete flex-center">
+          <ul id="auto-complete-results" class="auto-complete-ul">
+          </ul>
+        </div>
+        <div id="info-cards" class="row flex-center"></div>
+      </div>
     </div>
   </body>
 </html>

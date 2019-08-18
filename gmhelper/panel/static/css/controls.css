@@ -1,15 +1,41 @@
-body {
-  background-color: #add8e6;
+html {
+  height: 100%;
 }
 
-.auto-complete-input {
-  margin-top: 10px;
+body {
+  background-color: #add8e6;
+  height: 100%;
+  overflow-y: hidden;
+  overflow-x: scroll;
+}
+
+.main-content {
+  height: 100%;
 }
 
 .flex-center {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/****** Session Panel *******/
+.session-panel {
+  background-color: blue;
+  border: 1px solid green;
+  left: 0;
+  top: 0;
+  height: 100%;
+}
+
+/****** Auto Complete *******/
+.search-panel {
+  padding: 5px;
+  border-left: 1px solid black;
+}
+
+.auto-complete-input {
+  width: 100%;
 }
 
 .auto-complete .entry {
@@ -26,7 +52,7 @@ body {
   padding: 0;
   border-radius: 0 5px;
   display: none;
-  position: absolute;
+  position: relative;
   z-index: 10;
 }
 
