@@ -26,6 +26,22 @@ body {
   left: 0;
   top: 0;
   height: 100%;
+  padding: 0px;
+  margin: 0px;
+  overflow-y: scroll;
+}
+
+.selectors {
+  width: 100%;
+  border-bottom: 1px solid yellow;
+  padding-bottom: 10px;
+}
+
+.selector-row {
+  width: 85%;
+  margin: auto;
+  margin-right: 12px;
+  margin-top: 7px;
 }
 
 /****** Auto Complete *******/

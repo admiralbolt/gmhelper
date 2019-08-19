@@ -40,6 +40,16 @@ $(function() {
     });
   });
 
+  $(".selectors").on("change", "#session-selector", function() {
+    $.ajax({
+      method: "GET",
+      url: "/panel/update_session?key=" + this.value,
+      dataType: "html"
+    }).done(function(result) {
+      $(".session-items").html(result);
+    });
+  });
+
   $("#auto-complete-results").on("click", ".entry", function() {
     var index = $(this).attr("data-index");
     var data = auto_complete_items[index];

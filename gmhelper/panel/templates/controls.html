@@ -13,8 +13,8 @@
     <div class="row main-content">
       <div class="session-panel col-lg-2">
         <div class="selectors">
-          <div class="row">
-            <select id="campaign-selector" class="pretty-select">
+          <div class="row selector-row flex-center">
+            <select id="campaign-selector" class="pretty-select form-control">
               {% for campaign in campaigns %}
                 <option value="{{campaign.pk}}"
                 {% if campaign.pk == request.session.campaign %}
@@ -24,8 +24,8 @@
               {% endfor %}
             </select>
           </div>
-          <div class="row">
-            <select id="session-selector" class="pretty-select">
+          <div class="row selector-row flex-center">
+            <select id="session-selector" class="pretty-select form-control">
               {% for session in sessions %}
                 <option value="{{session.pk}}"
                 {% if session.pk == request.session.session %}
@@ -35,6 +35,9 @@
               {% endfor %}
             </select>
           </div>
+        </div>
+        <div class="session-items">
+          {% include "session_panel.html" with images=images letters=letters songs=songs %}
         </div>
       </div>
       <div class="session-content col-lg-6">
@@ -53,27 +56,3 @@
     </div>
   </body>
 </html>
-
-<!-- {% for image in images %}
-  <h3>{{image.name}}</h3>
-  <img height="300px" width="300px" src="{{image.image_file.url}}" />
-  <button onclick="send_message({type: 'image', path: '{{image.image_file.url}}'})">Send to Client</button>
-{% endfor %}
-
-{% for letter in letters %}
-  <h3>{{letter.name}}</h3>
-  <button onclick="send_message({type: 'letter', text: '{{letter.text | escapejs}}'})">Send to Client</button>
-{% endfor %}
-
-{% for song in songs %}
-  <h3>{{song.name}}</h3>
-  <ul>
-    {% for tag in song.tags.all %}
-      <li>{{tag.name}}</li>
-    {% endfor %}
-  </ul>
-  <p>{{song.flavor}}</p>
-  <audio controls {% if song.loop %} loop {% endif %}>
-    <source src="{{song.sound_file.url}}" />
-  </audio>
-{% endfor %} -->
