@@ -80,11 +80,8 @@ def controls(request):
   print(request.session["campaign"])
   return render(request, "controls.html", {
     "campaigns": campaigns,
-    "images": images,
-    "letters": letters,
-    "lores": lores,
+    "session": Session.objects.get(id=request.session["session"]),
     "sessions": sessions,
-    "songs": songs,
     "no_cache": random.randint(1, 100000000)
   })
 

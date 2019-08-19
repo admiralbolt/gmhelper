@@ -1,15 +1,15 @@
-{% for image in images %}
+{% for image in session.images.all %}
   <h3>{{image.name}}</h3>
   <img height="300px" width="300px" src="{{image.image_file.url}}" />
   <button onclick="send_message({type: 'image', path: '{{image.image_file.url}}'})">Send to Client</button>
 {% endfor %}
 
-{% for letter in letters %}
+{% for letter in session.letters.all %}
   <h3>{{letter.name}}</h3>
   <button onclick="send_message({type: 'letter', text: '{{letter.text | escapejs}}'})">Send to Client</button>
 {% endfor %}
 
-{% for song in songs %}
+{% for song in session.songs.all %}
   <h3>{{song.name}}</h3>
   <ul>
     {% for tag in song.tags.all %}

@@ -12,8 +12,14 @@ def update(request):
   session = Session.objects.get(id=request.GET["key"])
   request.session["session"] = session.pk
   return render(request, "session_panel.html", {
-    "images": session.images.all(),
-    "letters": session.letters.all(),
-    "songs": session.songs.all(),
+    "session": session,
+    "no_cache": random.randint(1, 100000000)
+  })
+
+def content(request):
+  """Render the current session content."""
+  session = Session.objects.get(id=request.session["session"])
+  return render(request, "session_content.html", {
+    "session": session,
     "no_cache": random.randint(1, 100000000)
   })
