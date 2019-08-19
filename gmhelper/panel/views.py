@@ -1,11 +1,13 @@
+import collections
 import random
 
 from django.core import serializers
+from django.forms.models import model_to_dict
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.template import loader
 from fuzzywuzzy import fuzz
-from panel.models import Image, Letter, Lore, Song
+from panel.models import Campaign, Image, Letter, Lore, Session, Song
 
 all_searchable_objects = [Image, Letter, Lore, Song]
 model_map = {
@@ -64,14 +66,24 @@ def songs(request):
   return render(request, "songs.html", {"songs": songs})
 
 def controls(request):
+  campaigns = Campaign.objects.order_by("name")
   images = Image.objects.order_by("name")
   letters = Letter.objects.order_by("name")
   lores = Lore.objects.order_by("name")
   songs = Song.objects.order_by("name")
+  if "campaign" not in request.session:
+    request.session["campaign"] = campaigns[0].pk
+  current_campaign = Campaign.objects.get(id=request.session["campaign"])
+  sessions = current_campaign.session_set.all()
+  if "sessions" not in request.session:
+    request.session["session"] = sessions[0].pk
+  print(request.session["campaign"])
   return render(request, "controls.html", {
+    "campaigns": campaigns,
     "images": images,
     "letters": letters,
     "lores": lores,
+    "sessions": sessions,
     "songs": songs,
     "no_cache": random.randint(1, 100000000)
   })

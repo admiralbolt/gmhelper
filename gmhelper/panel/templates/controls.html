@@ -12,7 +12,30 @@
   <body>
     <div class="row main-content">
       <div class="session-panel col-lg-2">
-
+        <div class="selectors">
+          <div class="row">
+            <select id="campaign-selector" class="pretty-select">
+              {% for campaign in campaigns %}
+                <option value="{{campaign.pk}}"
+                {% if campaign.pk == request.session.campaign %}
+                selected="selected"
+                {% endif %}
+                >{{campaign.name}}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="row">
+            <select id="session-selector" class="pretty-select">
+              {% for session in sessions %}
+                <option value="{{session.pk}}"
+                {% if session.pk == request.session.session %}
+                selected="selected"
+                {% endif %}
+                >{{session.name}}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
       </div>
       <div class="session-content col-lg-6">
 
