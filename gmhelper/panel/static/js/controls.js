@@ -34,11 +34,7 @@ function auto_complete(keyword) {
 }
 
 $(function() {
-  $("audio").on("play", function() {
-    $("audio").not(this).each(function(index, audio) {
-      audio.pause();
-    });
-  });
+
 
   $(".selectors").on("change", "#session-selector", function() {
     $.ajax({
@@ -56,6 +52,33 @@ $(function() {
       });
     });
   });
+
+  $("audio").on("play", function() {
+    $("audio").not(this).each(function(index, audio) {
+      audio.pause();
+    });
+  });
+
+  /********** Session Content ************/
+  $(".content-panel").on("click", "#edit-session", function() {
+    $("#session-html").toggle();
+    $("#session-text").toggle();
+    $(this).find("img").toggle();
+    // If we clicked the save button, make a call to update the session text.
+    if ($(this).children()[0].style.display != "none") {
+      $.ajax({
+        method: "POST",
+        url: "/panel/save_session",
+        data: {
+          "content": $("#session-text").text()
+        }
+      }).done(function(result) {
+        console.log(result);
+      });
+    }
+  });
+
+  /********** Auto Complete **************/
 
   $("#auto-complete-results").on("click", ".entry", function() {
     var index = $(this).attr("data-index");

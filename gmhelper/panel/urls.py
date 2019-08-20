@@ -10,4 +10,5 @@ urlpatterns = [
     path("songs", views.songs),
     path("update_session", session.update),
     path("session_content", session.content),
+    path("save_session", session.save)
 ]

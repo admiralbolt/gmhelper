@@ -23,3 +23,12 @@ def content(request):
     "session": session,
     "no_cache": random.randint(1, 100000000)
   })
+
+def save(request):
+  """Save the updated text of the current session.
+
+  Called everytime that the save button is clicked after editing session text.
+  """
+  session = Session.objects.get(id=request.session["session"])
+  session.content = request.POST["content"]
+  session.save()
