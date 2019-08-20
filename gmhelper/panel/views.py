@@ -75,7 +75,7 @@ def controls(request):
     request.session["campaign"] = campaigns[0].pk
   current_campaign = Campaign.objects.get(id=request.session["campaign"])
   sessions = current_campaign.session_set.all()
-  if "sessions" not in request.session:
+  if "session" not in request.session:
     request.session["session"] = sessions[0].pk
   print(request.session["campaign"])
   return render(request, "controls.html", {

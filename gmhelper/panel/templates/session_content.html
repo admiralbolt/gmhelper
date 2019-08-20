@@ -1,5 +1,7 @@
-{{ session.content | safe }}
+<div id="session-html">
+  {{ session.content | safe }}
+</div>
 
-<textarea class="form-control">
+<textarea id="session-text" class="form-control">
   {{session.content}}
 </textarea>

@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static "css/bootstrap.min.css" %}" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{% static "css/controls.css" %}?version={{no_cache}}" />
     <script src="{% static "js/jquery-3.4.1.js" %}"></script>
     <script src="{% static "js/controls.js" %}?version={{no_cache}}"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="{% static "js/bootstrap.min.js" %}" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   </head>
   <body>
     <div class="row main-content">
@@ -40,8 +40,19 @@
           {% include "session_panel.html" with images=images letters=letters songs=songs %}
         </div>
       </div>
-      <div class="session-content col-lg-6">
-        {% include "session_content.html" with session=session %}
+      <div class="content-panel col-lg-6">
+        <div class="content-controls row">
+          <button class="control-button flex-center">
+            <img class="icon-button" src="{% static "icons/pencil.svg" %}" />
+          </button>
+          <button class="control-button flex-center">
+            <img class="icon-button" src="{% static "icons/clippy.svg" %}" />
+          </button>
+        </div>
+        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+        <div class="session-content">
+          {% include "session_content.html" with session=session %}
+        </div>
       </div>
       <div class="search-panel col-lg-4">
         <div class="auto-complete-input flex-center">

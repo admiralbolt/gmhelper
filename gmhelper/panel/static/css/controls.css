@@ -44,6 +44,42 @@ body {
   margin-top: 7px;
 }
 
+/************ Session Content *********/
+.content-controls {
+  overflow-y: scroll;
+}
+
+.session-content {
+  height: 100%;
+}
+
+.content-controls {
+  border-bottom: 1px solid purple;
+}
+
+.control-button {
+  background-color: transparent;
+  height: 30px;
+  width: 30px;
+  border: 1px solid transparent;
+  border-radius: 5px;
+}
+
+.control-button:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.icon-button {
+  height: 20px;
+  width: 20px;
+}
+
+#session-text {
+  display: none;
+  height: 100% !important;
+}
+
+
 /****** Auto Complete *******/
 .search-panel {
   padding: 5px;

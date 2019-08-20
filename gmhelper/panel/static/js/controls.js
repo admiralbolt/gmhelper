@@ -47,6 +47,13 @@ $(function() {
       dataType: "html"
     }).done(function(result) {
       $(".session-items").html(result);
+      $.ajax({
+        method: "GET",
+        url: "/panel/session_content",
+        dataType: "html"
+      }).done(function(result) {
+        $(".session-content").html(result);
+      });
     });
   });
 

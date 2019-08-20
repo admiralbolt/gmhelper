@@ -8,5 +8,6 @@ urlpatterns = [
     path("controls", views.controls),
     path("info_card", views.info_card),
     path("songs", views.songs),
-    path("update_session", session.update)
+    path("update_session", session.update),
+    path("session_content", session.content),
 ]
