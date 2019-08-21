@@ -1,6 +1,7 @@
 import random
 
 from django.shortcuts import render
+from django.views.decorators.csrf import csrf_exempt
 from panel.models import Campaign, Image, Letter, Lore, Session, Song
 
 def update(request):
@@ -24,6 +25,7 @@ def content(request):
     "no_cache": random.randint(1, 100000000)
   })
 
+@csrf_exempt
 def save(request):
   """Save the updated text of the current session.
 
@@ -31,4 +33,9 @@ def save(request):
   """
   session = Session.objects.get(id=request.session["session"])
   session.content = request.POST["content"]
-  session.save()
+  print(session.content)
+  session.save(update_fields=["content"])
+  return render(request, "session_content.html", {
+    "session": session,
+    "no_cache": random.randint(1, 100000000)
+  })

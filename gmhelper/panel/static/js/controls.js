@@ -61,8 +61,10 @@ $(function() {
 
   /********** Session Content ************/
   $(".content-panel").on("click", "#edit-session", function() {
-    $("#session-html").toggle();
-    $("#session-text").toggle();
+    // Need to include an additional level of specificity since we are toggling
+    // elements that are dynamic.
+    $(".content-panel #session-html").toggle();
+    $(".content-panel #session-text").toggle();
     $(this).find("img").toggle();
     // If we clicked the save button, make a call to update the session text.
     if ($(this).children()[0].style.display != "none") {
@@ -70,10 +72,11 @@ $(function() {
         method: "POST",
         url: "/panel/save_session",
         data: {
-          "content": $("#session-text").text()
+          "content": $("#session-text").val(),
+          "csrfmiddlewaretoken": "{{ csrf_token }}"
         }
       }).done(function(result) {
-        console.log(result);
+        $("#session-html").html(result);
       });
     }
   });

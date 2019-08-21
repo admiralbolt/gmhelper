@@ -1,7 +1,10 @@
 <div id="session-html">
-  {{ session.content | safe }}
+  {{ session.content | safe | linebreaks }}
 </div>
 
-<textarea id="session-text" class="form-control">
-  {{session.content}}
-</textarea>
+<!--
+  So as it turns out, if you use any whitespace in the textarea it will
+  render that whitespace. Make sure the template tags have no extra spaces OR
+  newlines.
+-->
+<textarea id="session-text" class="form-control">{{session.content}}</textarea>
