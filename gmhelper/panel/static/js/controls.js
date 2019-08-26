@@ -81,21 +81,32 @@ $(function() {
     }
   });
 
+  /******** Session Panel ******/
+  $(".session-items").on("click", ".delete-button", function() {
+    var key = $(this).attr("data-id");
+    var model = $(this).attr("data-model");
+    $.ajax({
+      method: "GET",
+      url: "/panel/edit_session?action=delete&model=" + model + "&key=" + key,
+      dataType: "html"
+    }).done(function(result) {
+      $(".session-items").html(result);
+    });
+  });
+
   /********** Auto Complete **************/
 
   $("#auto-complete-results").on("click", ".entry", function() {
-    console.log("CLICK!");
     var index = $(this).attr("data-index");
     var data = auto_complete_items[index];
-    console.log(data);
     $.ajax({
       method: "GET",
-      url: "/panel/info_card?model=" + data.model + "&key=" + data.pk,
+      url: "/panel/edit_session?action=add&model=" + data.model + "&key=" + data.pk,
       dataType: "html"
     }).done(function(result) {
-      $("#info-cards").append(result);
+      $(".session-items").html(result);
     });
-    // $("#auto-complete-results").hide();
+    $("#auto-complete-results").hide();
   });
 
   $("#auto-complete-results").on("mouseenter", ".entry", function() {

@@ -8,14 +8,9 @@ from django.shortcuts import render
 from django.template import loader
 from fuzzywuzzy import fuzz
 from panel.models import Campaign, Image, Letter, Lore, Session, Song
+from panel.constants import model_map
 
 all_searchable_objects = [Image, Letter, Lore, Song]
-model_map = {
-  "panel.image": Image,
-  "panel.letter": Letter,
-  "panel.lore": Lore,
-  "panel.song": Song
-}
 
 def jaccard(a, b):
   return float(len(a.intersection(b))) / len(a.union(b))

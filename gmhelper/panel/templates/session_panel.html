@@ -1,9 +1,7 @@
-{% for image in session.images.all %}
-  <h3>{{image.name}}</h3>
-  <img height="300px" width="300px" src="{{image.image_file.url}}" />
-  <button onclick="send_message({type: 'image', path: '{{image.image_file.url}}'})">Send to Client</button>
+{% for image in session.images.all|dictsort:"name" %}
+  {% include "cards/image.html" with image=image %}
 {% endfor %}
-<br /><br />
+
 {% for letter in session.letters.all %}
   <h3>{{letter.name}}</h3>
   <button onclick="send_message({type: 'letter', text: '{{letter.text | escapejs}}'})">Send to Client</button>

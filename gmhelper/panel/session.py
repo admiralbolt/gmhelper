@@ -3,6 +3,7 @@ import random
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from panel.models import Campaign, Image, Letter, Lore, Session, Song
+from panel.constants import model_map
 
 def update(request):
   """Update the currently loaded campaign session.
@@ -35,6 +36,27 @@ def save(request):
   session.content = request.POST["content"]
   session.save(update_fields=["content"])
   return render(request, "session_content.html", {
+    "session": session,
+    "no_cache": random.randint(1, 100000000)
+  })
+
+def edit(request):
+  """Delete the item from the current session.
+
+  Returns the updated content of the session panel.
+  """
+  session = Session.objects.get(id=request.session["session"])
+  model = request.GET["model"]
+  item = model_map[model].objects.get(pk=request.GET["key"])
+  field_manager = getattr(session, f"{model.split('.')[1]}s")
+  action = request.GET["action"]
+  if action == "delete":
+    field_manager.remove(item)
+  elif action == "add":
+    field_manager.add(item)
+
+  session.save()
+  return render(request, "session_panel.html", {
     "session": session,
     "no_cache": random.randint(1, 100000000)
   })

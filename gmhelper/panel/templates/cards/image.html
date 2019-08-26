@@ -1,9 +1,18 @@
 {% load static %}
 
-<link rel="stylesheet" type="text/css" href="{% static "css/cards.css" %}?version={{no_cache}}" />
-
-<div class="card">
-  <p class="card-title">{{image.name}}</p>
-  <img class="card-icon" src="{{image.image_file.url}}" />
-  <p class="card-flavor">{{image.flavor}}</p>
+<div class="card row">
+  <img class="card-image" src="{{image.image_file.url}}" />
+  <div class="card-hover">
+    <div class="row hover-row flex-center">
+      <h2 class="card-title">{{image.name}}</h2>
+    </div>
+    <div class="row hover-row flex-center">
+      <button data-id="{{image.pk}}" data-model="panel.image" class="delete-button hover-button flex-center">
+        <img class="hover-icon" src="{% static "icons/trashcan.svg" %}" />
+      </button>
+      <button data-id="{{image.pk}}" data-model="panel.image" class="send-button hover-button flex-center">
+        <img class="hover-icon" src="{% static "icons/arrow-right.svg" %}" />
+      </button>
+    </div>
+  </div>
 </div>
