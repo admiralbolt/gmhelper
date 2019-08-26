@@ -25,7 +25,12 @@ SECRET_KEY = '$0_)8xex-z8vpv*=o#y6t9&emh@u8#lj1z76e4+1m+u-oo0c&o'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+  'localhost',
+  '192.168.0.197'
+]
+
+DATA_UPLOAD_MAX_MEMORY_SIZE = 500 * 1024 * 1024
 
 MEDIA_ROOT = '/home/admiralbolt/git/gmhelper/gmhelper/uploads'
 MEDIA_URL = '/uploads/'

@@ -33,7 +33,6 @@ def save(request):
   """
   session = Session.objects.get(id=request.session["session"])
   session.content = request.POST["content"]
-  print(session.content)
   session.save(update_fields=["content"])
   return render(request, "session_content.html", {
     "session": session,

@@ -72,11 +72,11 @@ $(function() {
         method: "POST",
         url: "/panel/save_session",
         data: {
-          "content": $("#session-text").val(),
-          "csrfmiddlewaretoken": "{{ csrf_token }}"
+          "content": $("#session-text").val()
         }
       }).done(function(result) {
-        $("#session-html").html(result);
+        console.log(result);
+        $(".session-content").html(result);
       });
     }
   });
