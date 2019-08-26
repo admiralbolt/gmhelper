@@ -84,6 +84,7 @@ $(function() {
   /********** Auto Complete **************/
 
   $("#auto-complete-results").on("click", ".entry", function() {
+    console.log("CLICK!");
     var index = $(this).attr("data-index");
     var data = auto_complete_items[index];
     console.log(data);
@@ -94,7 +95,7 @@ $(function() {
     }).done(function(result) {
       $("#info-cards").append(result);
     });
-    $("#auto-complete-results").hide();
+    // $("#auto-complete-results").hide();
   });
 
   $("#auto-complete-results").on("mouseenter", ".entry", function() {
@@ -115,7 +116,7 @@ $(function() {
     // Set timeout so that click event still fires... gross.
     setTimeout(function() {
       $("#auto-complete-results").hide();
-    }, 10);
+    }, 100);
   });
 
   $("#input-keyword").on("keydown", function(event) {

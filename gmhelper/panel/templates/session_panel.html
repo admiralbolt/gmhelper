@@ -3,21 +3,16 @@
   <img height="300px" width="300px" src="{{image.image_file.url}}" />
   <button onclick="send_message({type: 'image', path: '{{image.image_file.url}}'})">Send to Client</button>
 {% endfor %}
-
+<br /><br />
 {% for letter in session.letters.all %}
   <h3>{{letter.name}}</h3>
   <button onclick="send_message({type: 'letter', text: '{{letter.text | escapejs}}'})">Send to Client</button>
 {% endfor %}
-
-{% for song in session.songs.all %}
-  <h3>{{song.name}}</h3>
-  <ul>
-    {% for tag in song.tags.all %}
-      <li>{{tag.name}}</li>
-    {% endfor %}
-  </ul>
-  <p>{{song.flavor}}</p>
+<br /><br />
+{% for song in session.songs.all|dictsort:"name" %}
+  <h3 class="song-name">{{song.name}}</h3>
   <audio controls {% if song.loop %} loop {% endif %}>
     <source src="{{song.sound_file.url}}" />
   </audio>
+  <br /><br />
 {% endfor %}

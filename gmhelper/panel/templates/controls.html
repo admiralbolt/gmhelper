@@ -12,7 +12,21 @@
   <body>
     <div class="container-fluid main-content">
       <div class="row main-content">
-        <div class="session-panel col-lg-2">
+
+        <div class="content-panel col-lg-9">
+          <div class="content-controls">
+            <button id="edit-session" class="control-button flex-center">
+              <img class="icon-button" src="{% static "icons/pencil.svg" %}" />
+              <img style="display:none" class="icon-button" src="{% static "icons/clippy.svg" %}" />
+            </button>
+          </div>
+          <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+          <div class="session-content">
+            {% include "session_content.html" with session=session %}
+          </div>
+        </div>
+
+        <div class="session-panel col-lg-3">
           <div class="selectors">
             <div class="row selector-row flex-center">
               <select id="campaign-selector" class="pretty-select form-control">
@@ -37,32 +51,19 @@
               </select>
             </div>
           </div>
-          <div class="session-items">
-            {% include "session_panel.html" with images=images letters=letters songs=songs %}
-          </div>
-        </div>
-        <div class="content-panel col-lg-6">
-          <div class="content-controls">
-            <button id="edit-session" class="control-button flex-center">
-              <img class="icon-button" src="{% static "icons/pencil.svg" %}" />
-              <img style="display:none" class="icon-button" src="{% static "icons/clippy.svg" %}" />
-            </button>
-          </div>
-          <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-          <div class="session-content">
-            {% include "session_content.html" with session=session %}
-          </div>
-        </div>
-        <div class="search-panel col-lg-4">
           <div class="auto-complete-input flex-center">
             <input type="text" id="input-keyword" class="form-control" placeholder="Search for stuff..." aria-label="Search for stuff...">
           </div>
-          <div class="auto-complete flex-center">
+          <div class="auto-complete">
             <ul id="auto-complete-results" class="auto-complete-ul">
             </ul>
           </div>
           <div id="info-cards" class="row flex-center"></div>
+          <div class="session-items">
+            {% include "session_panel.html" with images=images letters=letters songs=songs %}
+          </div>
         </div>
+
       </div>
     </div>
   </body>
