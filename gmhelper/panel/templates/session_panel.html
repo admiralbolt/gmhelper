@@ -1,3 +1,9 @@
+{% load custom_filters %}
+
+{% for item in session.data_items.all %}
+  {% include "card.html" with item=item class=item|class_name %}
+{% endfor %}
+
 {% for image in session.images.all|dictsort:"name" %}
   {% include "cards/image.html" with image=image %}
 {% endfor %}

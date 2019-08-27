@@ -12,5 +12,6 @@ urlpatterns = [
     path("update_session", session.update),
     path("session_content", session.content),
     path("save_session", session.save),
-    path("edit_session", session.edit)
+    path("edit_session", session.edit),
+    path("update_item_order", session.update_item_order)
 ]

@@ -35,6 +35,20 @@ function auto_complete(keyword) {
 
 $(function() {
 
+  // Allow items to be drag & drop replaceable.
+  $(".session-items").sortable({
+    placeholder: "ui-state-highlight",
+    update: function(event, ui) {
+      var data = $(this).sortable("serialize");
+
+      $.ajax({
+        data: data,
+        type: "POST",
+        url: "/panel/update_item_order"
+      });
+    }
+  });
+
 
   $(".selectors").on("change", "#session-selector", function() {
     $.ajax({

@@ -48,15 +48,25 @@ def edit(request):
   session = Session.objects.get(id=request.session["session"])
   model = request.GET["model"]
   item = model_map[model].objects.get(pk=request.GET["key"])
-  field_manager = getattr(session, f"{model.split('.')[1]}s")
   action = request.GET["action"]
   if action == "delete":
-    field_manager.remove(item)
+    session.data_items.remove(item)
   elif action == "add":
-    field_manager.add(item)
+    session.data_items.add(item)
 
   session.save()
   return render(request, "session_panel.html", {
     "session": session,
     "no_cache": random.randint(1, 100000000)
   })
+
+@csrf_exempt
+def update_item_order(request):
+  """Update the order of data items for the current session.
+
+  This is just changing the order they are displayed in the sidebar.
+  """
+  session = Session.objects.get(id=request.session["session"])
+  print(request.POST.keys())
+  for item in request.POST["item"]:
+    print(item)

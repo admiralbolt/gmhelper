@@ -1,0 +1,21 @@
+{% load custom_filters %}
+{% load static %}
+
+<div class="card row">
+  {% if class == "Image" %}
+  <img class="card-image" src="{{item.image_file.url}}" />
+  {% endif %}
+  <div class="card-hover">
+    <div class="row hover-row flex-center">
+      <h2 class="card-title">{{item.name}}</h2>
+    </div>
+    <div class="row hover-row flex-center">
+      <button data-id="{{item.pk}}" data-model="panel.{{class|lower}}" class="delete-button hover-button flex-center">
+        <img class="hover-icon" src="{% static "icons/trashcan.svg" %}" />
+      </button>
+      <button data-id="{{item.pk}}" data-model="panel.{{class|lower}}" class="send-button hover-button flex-center">
+        <img class="hover-icon" src="{% static "icons/arrow-right.svg" %}" />
+      </button>
+    </div>
+  </div>
+</div>
