@@ -8,6 +8,7 @@ urlpatterns = [
     path("controls", views.controls),
     path("info_card", views.info_card),
     path("songs", views.songs),
+    path("display_item", views.display_item),
     path("update_session", session.update),
     path("session_content", session.content),
     path("save_session", session.save),

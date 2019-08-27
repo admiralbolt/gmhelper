@@ -48,11 +48,20 @@ def info_card(request):
   """
   model = request.GET["model"]
   item_name = model.split(".")[1]
-  key = request.GET["key"]
-  item = model_map[model].objects.get(pk=key)
+  item = model_map[model].objects.get(pk=request.GET["key"])
   return render(request, f"cards/{item_name}.html", {
     item_name: item,
     "no_cache": random.randint(1, 100000000)
+  })
+
+def display_item(request):
+  """Render a full screen display for a given data item."""
+  model = request.GET["model"]
+  item_name = model.split(".")[1]
+  item = model_map[model].objects.get(pk=request.GET["key"])
+  return render(request, f"client/{item_name}.html", {
+    item_name: item,
+    "no_cache": random.randint(1, 100000000000)
   })
 
 

@@ -75,7 +75,6 @@ $(function() {
           "content": $("#session-text").val()
         }
       }).done(function(result) {
-        console.log(result);
         $(".session-content").html(result);
       });
     }
@@ -91,6 +90,17 @@ $(function() {
       dataType: "html"
     }).done(function(result) {
       $(".session-items").html(result);
+    });
+  });
+
+ // Communicate the model & id through the socket. The client will make an ajax
+ // call to render the selected item.
+  $(".session-items").on("click", ".send-button", function() {
+    var key = $(this).attr("data-id");
+    var model = $(this).attr("data-model");
+    send_message({
+      model: model,
+      key: key
     });
   });
 
