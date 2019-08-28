@@ -38,7 +38,6 @@ def auto_complete(request):
   if keyword:
     data = [x for z in all_searchable_objects for x in z.objects.all()]
     data = sorted(data, key=lambda item: score(item.name.lower(), keyword), reverse = True)
-    print(data)
   return JsonResponse(serializers.serialize("json", data[:5]), safe=False)
 
 def info_card(request):

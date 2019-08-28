@@ -1,3 +1,5 @@
+from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
+from django.contrib.contenttypes.models import ContentType
 from django.db import models
 from gm2m import GM2MField
 
@@ -28,14 +30,17 @@ class Letter(DataItem):
   """
   author = models.CharField(max_length=255)
   text = models.TextField()
+  items = GenericRelation("SessionItem", related_query_name="letter")
 
 class Lore(DataItem):
   """A piece of lore. Similar to a letter, but not used for displaying."""
   text = models.TextField()
+  items = GenericRelation("SessionItem", related_query_name="lore")
 
 class Image(DataItem):
   """It's an image. Literally read the name you fucking ape."""
   image_file = models.FileField(upload_to="images/")
+  items = GenericRelation("SessionItem", related_query_name="image")
 
 class Song(DataItem):
   """Music makes the world go round."""
@@ -44,6 +49,7 @@ class Song(DataItem):
   # things like battle & ambient music.
   loop = models.BooleanField(default=False)
   sound_file = models.FileField(upload_to="music/")
+  items = GenericRelation("SessionItem", related_query_name="song")
 
 class Campaign(models.Model):
   """A Campaign!
@@ -70,8 +76,15 @@ class Session(models.Model):
   content = models.TextField(default=None, blank=True)
   # Used for a post-session reflection.
   reflection = models.TextField(default=None, blank=True)
-  # All data items: Images, Music, Letters, NPCS e.t.c.
-  data_items = GM2MField()
 
   def __str__(self):
     return self.name
+
+class SessionItem(models.Model):
+  session = models.ForeignKey(Session, on_delete=models.CASCADE)
+  # By default generic relations look for a field named 'content_type' and
+  # 'object_id'.
+  content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
+  object_id = models.PositiveIntegerField()
+  item = GenericForeignKey()
+  order = models.PositiveIntegerField()

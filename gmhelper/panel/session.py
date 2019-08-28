@@ -1,8 +1,9 @@
 import random
 
+from django.db.models import Max, Q
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
-from panel.models import Campaign, Image, Letter, Lore, Session, Song
+from panel.models import *
 from panel.constants import model_map
 
 def update(request):
@@ -49,10 +50,14 @@ def edit(request):
   model = request.GET["model"]
   item = model_map[model].objects.get(pk=request.GET["key"])
   action = request.GET["action"]
-  if action == "delete":
-    session.data_items.remove(item)
-  elif action == "add":
-    session.data_items.add(item)
+  # Find if there is already an existing item. It's a little jank but it works.
+  existing_item = SessionItem.objects.filter(Q(image=item))
+
+  if action == "delete" and existing_item:
+    existing_item.delete()
+  elif action == "add" and not existing_item:
+    max_order = SessionItem.objects.filter(session=session).aggregate(Max('order'))['order__max'] or 0
+    SessionItem.objects.create(session=session, item=item, order=max_order + 1)
 
   session.save()
   return render(request, "session_panel.html", {
