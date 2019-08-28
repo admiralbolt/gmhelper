@@ -162,7 +162,7 @@ body {
 }
 
 .card-title {
-  font-size: 14px;
+  font-size: 30px;
   font-weight: bold;
   color: white;
 }
@@ -170,12 +170,6 @@ body {
 .card-flavor {
   font-size: 11px;
   color: #eeeeee;
-}
-
-.card-image {
-  opacity: 1.0;
-  height: 100%;
-  width: 100%;
 }
 
 .card-hover {
@@ -192,16 +186,7 @@ body {
 
 .card:hover .card-hover {
   opacity: 1;
-  background-color: rgb(0, 0, 0, 0.5);
-}
-
-.card:hover .card-image {
-  opacity: 0.3;
-}
-
-.card-title {
-  font-size: 20px;
-  font-weight: bold;
+  background-color: rgb(0, 0, 0, 0.6);
 }
 
 .hover-row {
@@ -227,7 +212,47 @@ body {
 }
 
 .hover-icon {
-  color: white;
   height: 60px;
   width: 60px;
+  /**
+   * This is some black magic to apply coloring to the icons.
+   * For more info see: https://stackoverflow.com/a/53336754
+   * Also, to generate filters see: https://codepen.io/sosuke/pen/Pjoqqp
+   */
+  filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(3deg) brightness(100%) contrast(104%);
+}
+
+.card-image {
+  opacity: 1.0;
+  height: 100%;
+  width: 100%;
+}
+
+.card-letter {
+
+}
+
+.letter-title {
+  color: white;
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  margin-top: 15px;
+  position: relative;
+  z-index: 100;
+}
+
+.card-audio {
+  width: 100%;
+  z-index: 100;
+}
+
+.song-title {
+  color: white;
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  margin-top: 15px;
+  position: relative;
+  z-index: 100;
 }

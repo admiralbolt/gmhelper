@@ -7,19 +7,40 @@
   {% endif %}
 
   {% if class == "Letter" %}
+  <h2 class="letter-title">{{item.name}}</h2>
   <p class="card-letter">{{item.text}}</p>
   {% endif %}
+
+  {% if class == "Song" %}
+  <h3 class="song-title">{{item.name}}</h3>
+  <audio class="card-audio" id="song_{{item.pk}}" controls {% if item.loop %} loop {% endif %}>
+    <source src="{{item.sound_file.url}}" />
+  </audio>
+  {% endif %}
+
   <div class="card-hover">
     <div class="row hover-row flex-center">
+      {% if class == "Image" %}
       <h2 class="card-title">{{item.name}}</h2>
+      {% endif %}
     </div>
     <div class="row hover-row flex-center">
       <button data-id="{{item.pk}}" data-model="panel.{{class|lower}}" class="delete-button hover-button flex-center">
         <img class="hover-icon" src="{% static "icons/trashcan.svg" %}" />
       </button>
+      {% if class != "Song" %}
       <button data-id="{{item.pk}}" data-model="panel.{{class|lower}}" class="send-button hover-button flex-center">
         <img class="hover-icon" src="{% static "icons/arrow-right.svg" %}" />
       </button>
+      {% endif %}
+      {% if class == "Song" %}
+      <button data-id="{{item.pk}}" class="play-button hover-button flex-center">
+        <img class="hover-icon" src="{% static "icons/play.svg" %}" />
+      </button>
+      <button class="stop-button hover-button flex-center">
+        <img class="hover-icon" src="{% static "icons/stop.svg" %}" />
+      </button>
+      {% endif %}
     </div>
   </div>
 </div>

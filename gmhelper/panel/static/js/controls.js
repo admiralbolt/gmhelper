@@ -67,12 +67,6 @@ $(function() {
     });
   });
 
-  $("audio").on("play", function() {
-    $("audio").not(this).each(function(index, audio) {
-      audio.pause();
-    });
-  });
-
   /********** Session Content ************/
   $(".content-panel").on("click", "#edit-session", function() {
     // Need to include an additional level of specificity since we are toggling
@@ -115,6 +109,17 @@ $(function() {
     send_message({
       model: model,
       key: key
+    });
+  });
+
+  $(".session-items").on("click", ".play-button", function() {
+    var audio = $("#song_" + $(this).attr("data-id"))[0];
+    (audio.paused) ? audio.play() : audio.pause();
+  });
+
+  $(".session-items").on("click", ".stop-button", function() {
+    $("audio").each(function(index, audio) {
+      audio.pause();
     });
   });
 

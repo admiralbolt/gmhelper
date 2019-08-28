@@ -4,7 +4,7 @@
 <html>
   <head>
     <link rel="stylesheet" href="{% static "css/bootstrap.min.css" %}" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="{% static "css/controls.css" %}?version={{no_cache}}" />
+    <link rel="stylesheet" type="text/css" href="{% static "css/controls.css" %}?version={% now "U" %}" />
     <link rel="stylesheet" type="text/css" href="{% static "css/jquery-ui.css" %}" />
     <script src="{% static "js/jquery-3.4.1.js" %}"></script>
     <script src="{% static "js/controls.js" %}?version={{no_cache}}"></script>
