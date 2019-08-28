@@ -51,7 +51,10 @@ def edit(request):
   item = model_map[model].objects.get(pk=request.GET["key"])
   action = request.GET["action"]
   # Find if there is already an existing item. It's a little jank but it works.
-  existing_item = SessionItem.objects.filter(Q(image=item))
+  # Since relations need to be defined on each individual object, we need to
+  # search the relation based on the type of object. i.e. we need to filter
+  # for image=item OR letter=item e.t.c.
+  existing_item = SessionItem.objects.filter(**{model.split(".")[1].lower(): item})
 
   if action == "delete" and existing_item:
     existing_item.delete()
@@ -72,6 +75,12 @@ def update_item_order(request):
   This is just changing the order they are displayed in the sidebar.
   """
   session = Session.objects.get(id=request.session["session"])
-  print(request.POST.keys())
-  for item in request.POST["item"]:
-    print(item)
+  for i, si_id in enumerate(request.POST.getlist("si[]")):
+    session_item = SessionItem.objects.get(id=si_id)
+    print(session_item)
+    session_item.order = i + 1
+    session_item.save()
+  return render(request, "session_panel.html", {
+    "session": session,
+    "no_cache": random.randint(1, 100000000)
+  })

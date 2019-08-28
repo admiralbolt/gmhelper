@@ -88,3 +88,6 @@ class SessionItem(models.Model):
   object_id = models.PositiveIntegerField()
   item = GenericForeignKey()
   order = models.PositiveIntegerField()
+
+  class Meta:
+    ordering = ['order']

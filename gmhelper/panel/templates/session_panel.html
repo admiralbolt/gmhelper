@@ -1,7 +1,7 @@
 {% load custom_filters %}
 
 {% for session_item in session.sessionitem_set.all %}
-  {% include "card.html" with item=session_item.item class=session_item.item|class_name %}
+  {% include "card.html" with si_id=session_item.pk item=session_item.item class=session_item.item|class_name %}
 {% endfor %}
 
 {% for image in session.images.all|dictsort:"name" %}

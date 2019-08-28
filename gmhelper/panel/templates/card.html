@@ -1,9 +1,13 @@
 {% load custom_filters %}
 {% load static %}
 
-<div class="card row">
+<div id="si_{{si_id}}" class="card row">
   {% if class == "Image" %}
   <img class="card-image" src="{{item.image_file.url}}" />
+  {% endif %}
+
+  {% if class == "Letter" %}
+  <p class="card-letter">{{item.text}}</p>
   {% endif %}
   <div class="card-hover">
     <div class="row hover-row flex-center">
