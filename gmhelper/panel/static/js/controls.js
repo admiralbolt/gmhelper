@@ -104,13 +104,13 @@ $(function() {
   $(".session-items").on("click", ".delete-button", function() {
     var key = $(this).attr("data-id");
     var model = $(this).attr("data-model");
+    $(this).closest(".card").remove();
+
     $.ajax({
       method: "GET",
       url: "/panel/edit_session?action=delete&model=" + model + "&key=" + key,
       dataType: "html"
     }).done(function(result) {
-      $(".session-items").html(result);
-      reload_audio();
     });
   });
 
@@ -146,8 +146,8 @@ $(function() {
       url: "/panel/edit_session?action=add&model=" + data.model + "&key=" + data.pk,
       dataType: "html"
     }).done(function(result) {
-      $(".session-items").html(result);
-      reload_audio();
+      $("#input-keyword").val("");
+      $(".session-items .card").last().after(result);
     });
     $("#auto-complete-results").hide();
   });

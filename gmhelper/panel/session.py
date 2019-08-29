@@ -1,6 +1,7 @@
 import random
 
 from django.db.models import Max, Q
+from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from panel.models import *
@@ -58,15 +59,17 @@ def edit(request):
 
   if action == "delete" and existing_item:
     existing_item.delete()
+    session.save()
+    return HttpResponse()
   elif action == "add" and not existing_item:
     max_order = SessionItem.objects.filter(session=session).aggregate(Max('order'))['order__max'] or 0
-    SessionItem.objects.create(session=session, item=item, order=max_order + 1)
-
-  session.save()
-  return render(request, "session_panel.html", {
-    "session": session,
-    "no_cache": random.randint(1, 100000000)
-  })
+    session_item = SessionItem.objects.create(session=session, item=item, order=max_order + 1)
+    session.save()
+    return render(request, "card.html", {
+      "si_id": session_item.pk,
+      "item": session_item.item,
+      "class": session_item.item.__class__.__name__
+    })
 
 @csrf_exempt
 def update_item_order(request):
