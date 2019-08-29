@@ -33,6 +33,18 @@ function auto_complete(keyword) {
   });
 }
 
+/**
+ * Reload all audio elements on the page after a slight delay. Should be called
+ * after elements are dynamically changed to reload their source.
+ */
+function reload_audio() {
+  setTimeout(function() {
+    $("audio").each(function(index, audio) {
+      audio.load();
+    });
+  }, 100);
+}
+
 $(function() {
 
   // Allow items to be drag & drop replaceable.
@@ -98,6 +110,7 @@ $(function() {
       dataType: "html"
     }).done(function(result) {
       $(".session-items").html(result);
+      reload_audio();
     });
   });
 
@@ -134,6 +147,7 @@ $(function() {
       dataType: "html"
     }).done(function(result) {
       $(".session-items").html(result);
+      reload_audio();
     });
     $("#auto-complete-results").hide();
   });
