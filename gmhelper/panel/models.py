@@ -51,6 +51,30 @@ class Song(DataItem):
   sound_file = models.FileField(upload_to="music/")
   items = GenericRelation("SessionItem", related_query_name="song")
 
+class City(DataItem):
+  """A city!
+
+  Cities are simply a numbered list of stuff, shops, houses, important buildings
+  e.t.c. The number will correspond to an actual building on graph paper.
+  Eventually things like shops will probably get some special handling, but
+  for now it's just going to be text.
+  """
+  image_file = models.FileField(upload_to="images", blank=True)
+  items = GenericRelation("SessionItem", related_query_name="city")
+
+class CityItem(models.Model):
+  """A shop / house / point of interest in a city."""
+  city = models.ForeignKey(City, on_delete=models.CASCADE)
+  number = models.PositiveIntegerField()
+  name = models.CharField(max_length=255, default=None, blank=True)
+  text = models.TextField(default=None, blank=True)
+
+  def __str__(self):
+    return f"[{self.city.name}] {self.number} - {self.name}"
+
+  class Meta:
+    ordering = ["number"]
+
 class Campaign(models.Model):
   """A Campaign!
 
@@ -90,4 +114,4 @@ class SessionItem(models.Model):
   order = models.PositiveIntegerField()
 
   class Meta:
-    ordering = ['order']
+    ordering = ["order"]

@@ -2,7 +2,7 @@
 {% load static %}
 
 <div id="si_{{si_id}}" class="card row">
-  {% if class == "Image" %}
+  {% if class == "Image" or class == "City" %}
   <img class="card-image" src="{{item.image_file.url}}" />
   {% endif %}
 
@@ -20,7 +20,7 @@
 
   <div class="card-hover">
     <div class="row hover-row flex-center">
-      {% if class == "Image" %}
+      {% if class == "Image" or class == "City" %}
       <h2 class="card-title">{{item.name}}</h2>
       {% endif %}
     </div>

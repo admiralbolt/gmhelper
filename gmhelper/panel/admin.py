@@ -1,8 +1,10 @@
 from django.contrib import admin
 
-from panel.models import Campaign, Image, Letter, Lore, Session, Song, Tag
+from panel.models import Campaign, City, CityItem, Image, Letter, Lore, Session, Song, Tag
 
 admin.site.register(Campaign)
+admin.site.register(City)
+admin.site.register(CityItem)
 admin.site.register(Image)
 admin.site.register(Letter)
 admin.site.register(Lore)

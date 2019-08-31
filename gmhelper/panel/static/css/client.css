@@ -10,3 +10,7 @@ body {
   align-items: center;
   justify-content: center;
 }
+
+.client-image {
+  max-width: 100%;
+}

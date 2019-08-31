@@ -1,5 +1,7 @@
+{% load custom_filters %}
+
 <div id="session-html">
-  {{ session.content | safe | linebreaks }}
+  {{ session.content | custom_views | safe }}
 </div>
 
 <!--

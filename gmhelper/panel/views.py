@@ -7,10 +7,10 @@ from django.http import JsonResponse
 from django.shortcuts import render
 from django.template import loader
 from fuzzywuzzy import fuzz
-from panel.models import Campaign, Image, Letter, Lore, Session, Song
+from panel.models import Campaign, City, Image, Letter, Lore, Session, Song
 from panel.constants import model_map
 
-all_searchable_objects = [Image, Letter, Lore, Song]
+all_searchable_objects = [City, Image, Letter, Lore, Song]
 
 def jaccard(a, b):
   return float(len(a.intersection(b))) / len(a.union(b))
