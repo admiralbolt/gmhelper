@@ -20,7 +20,6 @@ body {
 }
 
 
-
 /************ Session Content *********/
 .content-panel {
   height: 100%;
@@ -83,6 +82,10 @@ body {
   margin-bottom: 0px !important;
 }
 
+.ui-tabs .ui-tabs-panel p {
+  white-space: pre-wrap;
+}
+
 
 /****** Session Panel *******/
 .session-panel {
@@ -136,7 +139,7 @@ body {
 .auto-complete ul {
   width: 100%;
   list-style: none;
-  padding: 0px;
+  padding: 0px 10px 0px 10px;
   border-radius: 0 5px;
   display: none;
   position: absolute;
@@ -161,7 +164,8 @@ body {
 }
 
 .item-type {
-  float: right
+  float: right;
+  margin-right: 20px;
 }
 
 /********* CARDS *************/

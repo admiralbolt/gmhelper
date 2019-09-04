@@ -44,6 +44,7 @@ class Image(DataItem):
 
 class Song(DataItem):
   """Music makes the world go round."""
+  artist = models.CharField(max_length=255, blank=True)
   tags = models.ManyToManyField(Tag, blank=True)
   # Whether or not to loop the song continuously. This is generally true for
   # things like battle & ambient music.
@@ -60,6 +61,7 @@ class City(DataItem):
   for now it's just going to be text.
   """
   image_file = models.FileField(upload_to="images", blank=True)
+  description = models.TextField(blank=True)
   items = GenericRelation("SessionItem", related_query_name="city")
 
 class CityItem(models.Model):
