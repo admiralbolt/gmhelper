@@ -52,6 +52,11 @@ class Song(DataItem):
   sound_file = models.FileField(upload_to="music/")
   items = GenericRelation("SessionItem", related_query_name="song")
 
+class Monster(DataItem):
+  """Rawwwwwr"""
+  image_file = models.FileField(upload_to="images/")
+  items = GenericRelation("SessionItem", related_query_name="monster")
+
 class City(DataItem):
   """A city!
 
@@ -73,6 +78,29 @@ class CityItem(models.Model):
 
   def __str__(self):
     return f"[{self.city.name}] {self.number} - {self.name}"
+
+  class Meta:
+    ordering = ["number"]
+
+class Dungeon(DataItem):
+  """A Dungeon!
+
+  This is very similar to a city, only maintained as a separate data structure
+  because they may diverge at some point.
+  """
+  image_file = models.FileField(upload_to="images", blank=True)
+  description = models.TextField(blank=True)
+  items = GenericRelation("SessionItem", related_query_name="dungeon")
+
+class DungeonItem(models.Model):
+  """A room in a dungeon."""
+  dungeon = models.ForeignKey(Dungeon, on_delete=models.CASCADE)
+  number = models.PositiveIntegerField()
+  name = models.CharField(max_length=255, default=None, blank=True)
+  text = models.TextField(default=None, blank=True)
+
+  def __str__(self):
+    return f"[{self.dungeon.name}] {self.number} - {self.name}"
 
   class Meta:
     ordering = ["number"]

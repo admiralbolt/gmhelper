@@ -61,7 +61,7 @@ def edit(request):
     existing_item.delete()
     session.save()
     return HttpResponse()
-  elif action == "add" and not existing_item:
+  elif action == "add":
     max_order = SessionItem.objects.filter(session=session).aggregate(Max('order'))['order__max'] or 0
     session_item = SessionItem.objects.create(session=session, item=item, order=max_order + 1)
     session.save()

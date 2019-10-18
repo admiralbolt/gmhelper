@@ -7,10 +7,12 @@ from django.http import JsonResponse
 from django.shortcuts import render
 from django.template import loader
 from fuzzywuzzy import fuzz
-from panel.models import Campaign, City, Image, Letter, Lore, Session, Song
+from panel.models import Campaign, City, Image, Letter, Lore, Monster, Session, Song
+from panel.serializers import *
 from panel.constants import model_map
+from rest_framework import generics
 
-all_searchable_objects = [City, Image, Letter, Lore, Song]
+all_searchable_objects = [City, Image, Letter, Lore, Monster, Song]
 
 def jaccard(a, b):
   return float(len(a.intersection(b))) / len(a.union(b))
@@ -92,3 +94,7 @@ def client(request):
   return render(request, "client.html", {
     "no_cache": random.randint(1, 100000000)
   })
+
+class SongListCreate(generics.ListCreateAPIView):
+  queryset = Song.objects.all()
+  serializer_class = SongSerializer
